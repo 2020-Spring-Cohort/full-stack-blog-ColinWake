@@ -1,0 +1,29 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.content .container {
+    background-color: #282a36;
+    color: white;
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.content .header {
+    background-color: #474955;
+    display: flex;
+    flex: 0 1 40px;
+}
+
+.content .footer {
+    background-color: #474955;
+    display: flex;
+    flex: 0 1 40px;
+}
