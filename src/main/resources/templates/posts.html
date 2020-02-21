@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="css/main-style.css">
+    <meta charset="UTF-8">
+    <title>Posts</title>
+</head>
+<body>
+
+<div class="content">
+
+    <header class="content header">Header</header>
+
+    <div class="content container">
+
+        <h1 class="content title">Posts</h1>
+
+        <div class="content section" th:each="post : ${posts}">
+
+            <h2 class="content section title" th:text="${post.getTitle()}">
+                <a th:href="@{'/posts/' + ${post.getId()}}">Title</a>
+            </h2>
+            <h3 class="content section author" th:text="'By ' + ${post.getAuthor().getName()}">Author</h3>
+            <p class="content section info" th:text="${post.getBody()}">Body</p>
+            <p class="content section date" th:text="${post.getDate()}">Date</p>
+
+        </div>
+
+    </div>
+
+    <footer class="content footer">Footer <a href="#">Back Home</a></footer>
+
+</div>
+
+</body>
+</html>
