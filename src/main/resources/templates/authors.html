@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="css/main-style.css">
+    <meta charset="UTF-8">
+    <title>Authors</title>
+</head>
+<body>
+
+<div class="content">
+
+    <div class="content container">
+
+        <header class="content header">Header</header>
+
+        <div th:each="author : ${authors}">
+
+            <h1 class="content title" th:text="${author.getName()}">
+                <a th:href="@{'/authors/' + ${author.getId()}}">Author</a>
+            </h1>
+
+        </div>
+
+
+    </div>
+
+    <footer class="content footer">Footer <a href="#">Back Home</a></footer>
+
+</div>
+
+</body>
+</html>

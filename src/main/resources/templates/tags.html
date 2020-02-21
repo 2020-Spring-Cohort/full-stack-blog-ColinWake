@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="css/main-style.css">
+    <meta charset="UTF-8">
+    <title>Tags</title>
+</head>
+<body>
+
+<div class="content">
+
+    <header class="content header">Header</header>
+
+    <div class="content container">
+
+        <h1 class="content title">Post Tags</h1>
+
+        <ul class="content section" th:each="tag : ${tags}">
+            <li>
+                <h2 th:text="${tag.getName()}">
+                    <ul th:each="post : ${tag.getPosts()}">
+                        <li><h3 th:text="${post.getTitle()}">
+                            <a th:href="@{'/posts/' + ${post.getId()}}">Post Link</a>
+                        </h3></li>
+                    </ul>
+                </h2>
+            </li>
+        </ul>
+
+    </div>
+
+    <footer class="content footer">Footer <a href="#">Back Home</a></footer>
+
+</div>
+
+</body>
+</html>
