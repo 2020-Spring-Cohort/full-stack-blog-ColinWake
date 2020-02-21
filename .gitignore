@@ -30,4 +30,4 @@ out/
 
 ### VS Code ###
 .vscode/
-/gradle/
+/gradle/wrapper/gradle-wrapper.properties
