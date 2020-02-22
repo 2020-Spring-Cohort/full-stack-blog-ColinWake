@@ -15,8 +15,8 @@
 
         <div th:each="author : ${authors}">
 
-            <h1 class="content title" th:text="${author.getName()}">
-                <a th:href="@{'/authors/' + ${author.getId()}}">Author</a>
+            <h1 class="content title">
+                <a th:text="${author.getName()}" th:href="@{'/authors/' + ${author.getId()}}">Author</a>
             </h1>
 
         </div>
@@ -24,7 +24,7 @@
 
     </div>
 
-    <footer class="content footer">Footer <a href="#">Back Home</a></footer>
+    <footer class="content footer">Footer <a href="/">Back Home</a></footer>
 
 </div>
 

@@ -17,7 +17,7 @@ public class Tag {
     @ManyToMany
     private Collection<Post> posts;
 
-    public Tag() {
+    protected Tag() {
     }
 
     public Tag(String name, Post... posts) {

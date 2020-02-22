@@ -15,9 +15,6 @@ public class CategoryStorageJpaImpl implements CategoryStorage {
         this.categoryRepository = categoryRepository;
     }
 
-    protected CategoryStorageJpaImpl() {
-    }
-
     @Override
     public Collection<Category> getAll() {
         return (Collection<Category>) categoryRepository.findAll();

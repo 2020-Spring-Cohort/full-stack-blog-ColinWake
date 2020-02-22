@@ -10,4 +10,5 @@ public interface TagStorage {
 
     void store(Tag tag);
 
+    Tag findTagById(Long tagId);
 }

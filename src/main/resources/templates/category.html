@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="css/main-style.css">
+    <meta charset="UTF-8">
+    <title th:text="${category.getName()}">Title</title>
+</head>
+<body>
+
+<h1 th:text="${category.getName()}">Category Name</h1>
+
+<table style="border: thin solid gray">
+    <tr>
+        <th>Title</th>
+        <th>Body</th>
+        <th>Author</th>
+        <th>Date</th>
+    </tr>
+    <tbody>
+    <tr th:if="${category.getPosts().isEmpty()}">
+        <td colspan="2">No Posts</td>
+    </tr>
+    <tr th:each="post : ${category.getPosts()}">
+        <td style="border: thin solid black"><span>
+            <a th:text="${post.getTitle()}" th:href="@{'/posts/' + ${post.getId()}}">Post Title</a>
+        </span></td>
+        <td style="border: thin solid black"><span th:text="${post.getBody()}">Post Body</span></td>
+        <td style="border: thin solid black"><span th:text="${post.getAuthor().getName()}">Post Author</span></td>
+        <td style="border: thin solid black"><span th:text="${post.getDate()}">Post Date</span></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
