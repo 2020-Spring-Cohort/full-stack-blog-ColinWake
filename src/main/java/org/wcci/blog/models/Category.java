@@ -17,7 +17,7 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private Collection<Post> posts;
 
-    public Category() {
+    protected Category() {
     }
 
     public Category(String name, Post... posts) {

@@ -9,13 +9,10 @@ import java.util.Collection;
 @Service
 public class AuthorStorageJpaImpl implements AuthorStorage {
 
-    AuthorRepository authorRepository;
+    private AuthorRepository authorRepository;
 
     public AuthorStorageJpaImpl(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
-    }
-
-    protected AuthorStorageJpaImpl() {
     }
 
     @Override
@@ -31,5 +28,10 @@ public class AuthorStorageJpaImpl implements AuthorStorage {
     @Override
     public Author findAuthorByName(String name) {
         return authorRepository.findByName(name).get();
+    }
+
+    @Override
+    public Author findAuthorById(Long id) {
+        return authorRepository.findById(id).get();
     }
 }

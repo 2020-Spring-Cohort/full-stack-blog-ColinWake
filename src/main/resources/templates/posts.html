@@ -17,8 +17,8 @@
 
         <div class="content section" th:each="post : ${posts}">
 
-            <h2 class="content section title" th:text="${post.getTitle()}">
-                <a th:href="@{'/posts/' + ${post.getId()}}">Title</a>
+            <h2 class="content section title">
+                <a th:text="${post.getTitle()}" th:href="@{'/posts/' + ${post.getId()}}">Title</a>
             </h2>
             <h3 class="content section author" th:text="'By ' + ${post.getAuthor().getName()}">Author</h3>
             <p class="content section info" th:text="${post.getBody()}">Body</p>
@@ -28,7 +28,7 @@
 
     </div>
 
-    <footer class="content footer">Footer <a href="#">Back Home</a></footer>
+    <footer class="content footer">Footer <a href="/">Back Home</a></footer>
 
 </div>
 

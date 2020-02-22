@@ -9,13 +9,10 @@ import java.util.Collection;
 @Service
 public class PostStorageJpaImpl implements PostStorage {
 
-    PostRepository postRepository;
+    private PostRepository postRepository;
 
     public PostStorageJpaImpl(PostRepository postRepository) {
         this.postRepository = postRepository;
-    }
-
-    protected PostStorageJpaImpl() {
     }
 
     @Override
@@ -31,5 +28,10 @@ public class PostStorageJpaImpl implements PostStorage {
     @Override
     public Post findPostByTitle(String title) {
         return postRepository.findByTitle(title).get();
+    }
+
+    @Override
+    public Post findPostById(Long id) {
+        return postRepository.findById(id).get();
     }
 }

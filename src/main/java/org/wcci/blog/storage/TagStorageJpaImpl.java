@@ -15,9 +15,6 @@ public class TagStorageJpaImpl implements TagStorage {
         this.tagRepository = tagRepository;
     }
 
-    protected TagStorageJpaImpl() {
-    }
-
     @Override
     public Collection<Tag> getAll() {
         return (Collection<Tag>) tagRepository.findAll();
@@ -26,5 +23,10 @@ public class TagStorageJpaImpl implements TagStorage {
     @Override
     public void store(Tag tag) {
         tagRepository.save(tag);
+    }
+
+    @Override
+    public Tag findTagById(Long tagId) {
+        return tagRepository.findById(tagId).get();
     }
 }

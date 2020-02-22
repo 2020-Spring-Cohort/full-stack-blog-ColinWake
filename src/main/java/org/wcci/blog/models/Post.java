@@ -22,7 +22,7 @@ public class Post {
     @ManyToMany(mappedBy = "posts")
     private Collection<Tag> tags;
 
-    public Post() {
+    protected Post() {
     }
 
     public Post(String title, String body, Author author, Category category, Tag... tags) {
@@ -30,7 +30,7 @@ public class Post {
         this.body = body;
         this.author = author;
         // Ex. February 20 2020 10:14 PM
-        this.date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMMM dd yyyy hh:mm a"));
+        this.date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMMM dd yyyy h:mm a"));
         this.category = category;
         this.tags = Arrays.asList(tags);
     }
@@ -57,5 +57,13 @@ public class Post {
 
     public Collection<Tag> getTags() {
         return tags;
+    }
+
+    public void addTagToPost(Tag tag) {
+        tags.add(tag);
+    }
+
+    public Long getId() {
+        return id;
     }
 }
