@@ -11,7 +11,16 @@
 
     <div class="content container">
 
-        <header class="content header">Header</header>
+        <div class="content header">
+
+            <header class="content header info">
+                <h3><a href="/categories">Categories</a></h3>
+                <h3><a href="/posts">Posts</a></h3>
+                <h3><a href="/authors">Authors</a></h3>
+                <h3><a href="/tags">Tags</a></h3>
+            </header>
+
+        </div>
 
         <div th:each="author : ${authors}">
 

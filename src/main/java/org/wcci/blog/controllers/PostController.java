@@ -11,7 +11,7 @@ import org.wcci.blog.storage.CategoryStorage;
 import org.wcci.blog.storage.PostStorage;
 
 @Controller
-@RequestMapping("posts")
+@RequestMapping("/posts")
 public class PostController {
 
     PostStorage postStorage;
@@ -27,7 +27,8 @@ public class PostController {
     @GetMapping
     public String displayPosts(Model model) {
         model.addAttribute("posts", postStorage.getAll());
-
+        model.addAttribute("categories", categoryStorage.getAll());
+        model.addAttribute("authors", authorStorage.getAll());
         return "posts";
     }
 
@@ -41,7 +42,7 @@ public class PostController {
     }
 
     @PostMapping("/add-post")
-    public String addPost(@RequestParam String title, @RequestParam String body, @RequestParam String author, @RequestParam String category) {
+    public String addPost(@RequestParam String category, @RequestParam String author, @RequestParam String title, @RequestParam String body) {
         Author retrievedAuthor = authorStorage.findAuthorByName(author);
         Category retrievedCategory = categoryStorage.findCategoryByName(category);
         postStorage.store(new Post(title, body, retrievedAuthor, retrievedCategory));

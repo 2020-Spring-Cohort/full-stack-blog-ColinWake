@@ -9,11 +9,19 @@ html, body {
     height: 100%;
 }
 
+.content .header .info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
 .content .container {
     background-color: #282a36;
     color: white;
     display: flex;
+    flex-direction: column;
     flex: 1 1 auto;
+    overflow-y: scroll;
 }
 
 .content .header {

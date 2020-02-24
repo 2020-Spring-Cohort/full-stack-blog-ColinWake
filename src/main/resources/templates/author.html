@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="/css/main-style.css">
     <meta charset="UTF-8">
     <title th:text="${author.getName()}">Title</title>
 </head>
 <body>
 
-<h1 th:text="${author.getName()}">Author Name</h1>
+<div class="content header">
 
-<h3 th:text="'Posts by ' + ${author.getName()}">Posts</h3>
+    <header class="content header info">
+        <h3><a href="/categories">Categories</a></h3>
+        <h3><a href="/posts">Posts</a></h3>
+        <h3><a href="/authors">Authors</a></h3>
+        <h3><a href="/tags">Tags</a></h3>
+    </header>
 
-<ul th:each="post : ${author.getPosts()}">
-    <li>
-        <a th:text="${post.getTitle()}" th:href="@{'/posts/' + ${post.getId()}}">Title</a>
-    </li>
-</ul>
+</div>
+
+<div class="content container">
+
+    <h1 th:text="${author.getName()}">Author Name</h1>
+
+    <h3 th:text="'Posts by ' + ${author.getName()}">Posts</h3>
+
+    <ul th:each="post : ${author.getPosts()}">
+        <li>
+            <a th:text="${post.getTitle()}" th:href="@{'/posts/' + ${post.getId()}}">Title</a>
+        </li>
+    </ul>
+
+</div>
 
 </body>
 </html>
