@@ -4,8 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class Tag {
@@ -22,7 +24,7 @@ public class Tag {
 
     public Tag(String name, Post... posts) {
         this.name = name;
-        this.posts = Arrays.asList(posts);
+        this.posts = new ArrayList<>(Arrays.asList(posts));
     }
 
     public Long getId() {
@@ -35,5 +37,18 @@ public class Tag {
 
     public Collection<Post> getPosts() {
         return posts;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tag tag = (Tag) o;
+        return Objects.equals(name, tag.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
