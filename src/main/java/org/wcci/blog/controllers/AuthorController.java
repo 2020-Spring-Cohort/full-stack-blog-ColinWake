@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.wcci.blog.models.Author;
-import org.wcci.blog.models.Post;
 import org.wcci.blog.storage.AuthorStorage;
 import org.wcci.blog.storage.PostStorage;
 
@@ -36,13 +35,6 @@ public class AuthorController {
     @PostMapping("/add-author")
     public String addAuthor(@RequestParam String name) {
         authorStorage.store(new Author(name));
-        return "redirect:";
-    }
-
-    @PostMapping("/add-author-by-post")
-    public String addAuthorByPost(@RequestParam String name, @RequestParam Long postId) {
-        Post retrievedPost = postStorage.findPostById(postId);
-        authorStorage.store(new Author(name, retrievedPost));
         return "redirect:";
     }
 }

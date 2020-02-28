@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="css/main-style.css">
+    <link rel="stylesheet" href="/css/main-style.css">
     <meta charset="UTF-8">
     <title th:text="${category.getName()}">Title</title>
 </head>
 <body>
+
+<div class="content header">
+
+    <header class="content header info">
+        <h3><a href="/categories">Categories</a></h3>
+        <h3><a href="/posts">Posts</a></h3>
+        <h3><a href="/authors">Authors</a></h3>
+        <h3><a href="/tags">Tags</a></h3>
+    </header>
+
+</div>
 
 <h1 th:text="${category.getName()}">Category Name</h1>
 
@@ -30,6 +41,8 @@
     </tr>
     </tbody>
 </table>
+
+<footer class="content footer">Footer <a href="/">Back Home</a></footer>
 
 </body>
 </html>

@@ -29,4 +29,9 @@ public class TagStorageJpaImpl implements TagStorage {
     public Tag findTagById(Long tagId) {
         return tagRepository.findById(tagId).get();
     }
+
+    @Override
+    public Tag findTagByName(String name) {
+        return tagRepository.findByName(name).get();
+    }
 }

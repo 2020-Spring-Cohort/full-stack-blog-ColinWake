@@ -3,8 +3,10 @@ package org.wcci.blog.models;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class Post {
@@ -32,7 +34,7 @@ public class Post {
         // Ex. February 20 2020 10:14 PM
         this.date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMMM dd yyyy h:mm a"));
         this.category = category;
-        this.tags = Arrays.asList(tags);
+        this.tags = new ArrayList<>(Arrays.asList(tags));
     }
 
     public String getTitle() {
@@ -65,5 +67,29 @@ public class Post {
 
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Post post = (Post) o;
+
+        if (!Objects.equals(title, post.title)) return false;
+        if (!Objects.equals(body, post.body)) return false;
+        if (!Objects.equals(author, post.author)) return false;
+        if (!Objects.equals(date, post.date)) return false;
+        return Objects.equals(category, post.category);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = title != null ? title.hashCode() : 0;
+        result = 31 * result + (body != null ? body.hashCode() : 0);
+        result = 31 * result + (author != null ? author.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (category != null ? category.hashCode() : 0);
+        return result;
     }
 }

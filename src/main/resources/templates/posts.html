@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="css/main-style.css">
+    <link rel="stylesheet" href="/css/main-style.css">
     <meta charset="UTF-8">
     <title>Posts</title>
 </head>
@@ -9,7 +9,17 @@
 
 <div class="content">
 
-    <header class="content header">Header</header>
+    <div class="content header">
+
+        <header class="content header info">
+            <h3><a href="/categories">Categories</a></h3>
+            <h3><a href="/posts">Posts</a></h3>
+            <h3><a href="/authors">Authors</a></h3>
+            <h3><a href="/tags">Tags</a></h3>
+        </header>
+
+    </div>
+
 
     <div class="content container">
 
@@ -20,11 +30,43 @@
             <h2 class="content section title">
                 <a th:text="${post.getTitle()}" th:href="@{'/posts/' + ${post.getId()}}">Title</a>
             </h2>
-            <h3 class="content section author" th:text="'By ' + ${post.getAuthor().getName()}">Author</h3>
-            <p class="content section info" th:text="${post.getBody()}">Body</p>
-            <p class="content section date" th:text="${post.getDate()}">Date</p>
 
         </div>
+
+        <form action="/posts/add-post" method="post">
+            <fieldset>
+                <legend>New Post</legend>
+                <label for="category">
+                    Category<br>
+                    <select id="category" name="category">
+                        <option th:each="category : ${categories}" th:value="${category.getName()}"
+                                th:text="${category.getName()}">Category
+                        </option>
+                    </select>
+                </label>
+                <br><br>
+                <label for="author">
+                    Author<br>
+                    <select id="author" name="author">
+                        <option th:each="author : ${authors}" th:value="${author.getName()}"
+                                th:text="${author.getName()}">Author
+                        </option>
+                    </select>
+                </label>
+                <br><br>
+                <label for="title">
+                    Title<br>
+                    <input type="text" id="title" name="title"><br><br>
+                </label>
+                <label for="body">
+                    Body<br>
+                    <textarea id="body" name="body" rows="10" cols="50" placeholder="Write your post..."></textarea>
+                </label>
+                <br><br>
+                <button type="submit">Create</button>
+            </fieldset>
+            <br>
+        </form>
 
     </div>
 
