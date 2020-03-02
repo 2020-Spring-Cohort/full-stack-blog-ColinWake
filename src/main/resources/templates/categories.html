@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="css/main-style.css">
+    <link href="https://fonts.googleapis.com/css?family=Spartan&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main-style.css">
     <meta charset="UTF-8">
     <title>Categories</title>
 </head>
-<body>
+<body class="content">
 
-<div class="content">
+<header class="content__header">
+    <h3><a href="/categories">Categories</a></h3>
+    <h3><a href="/posts">Posts</a></h3>
+    <h3><a href="/authors">Authors</a></h3>
+    <h3><a href="/tags">Tags</a></h3>
+</header>
 
-    <div class="content header">
+<div class="content__container">
 
-        <header class="content header info">
-            <h3><a href="/categories">Categories</a></h3>
-            <h3><a href="/posts">Posts</a></h3>
-            <h3><a href="/authors">Authors</a></h3>
-            <h3><a href="/tags">Tags</a></h3>
-        </header>
+    <h1 th:each="category : ${categories}">
+        <a th:href="@{'/categories/' + ${category.getName()}}" th:text="${category.getName()}">
+            Category
+        </a>
+    </h1>
 
-    </div>
-
-    <div class="content container">
-
-        <h1 class="content title" th:each="category : ${categories}">
-            <a th:href="@{'/categories/' + ${category.getName()}}" th:text="${category.getName()}">
-                Category
-            </a>
-        </h1>
-
-    </div>
-
-    <footer class="content footer">Footer <a href="/">Back Home</a></footer>
+    <form method="post" action="/categories/add-category" class="content__container__form">
+        <fieldset>
+            <legend>New Category</legend>
+            <label for="name">
+                Name<br>
+                <input type="text" name="name" id="name">
+            </label>
+            <button type="submit">Create</button>
+        </fieldset>
+    </form>
 
 </div>
+
+<footer class="content__footer"><a href="/">Back Home</a></footer>
 
 </body>
 </html>

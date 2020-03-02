@@ -2,9 +2,7 @@ package org.wcci.blog.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.wcci.blog.models.Tag;
 import org.wcci.blog.storage.TagStorage;
 
@@ -32,5 +30,14 @@ public class TagController {
         model.addAttribute("tag", retrievedTag);
 
         return "tag";
+    }
+
+    @PostMapping("/add-tag")
+    public String addTag(@RequestParam("name") String name) {
+        Tag newTag = new Tag(name);
+
+        tagStorage.store(newTag);
+
+        return "redirect:";
     }
 }

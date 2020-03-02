@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Spartan&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/main-style.css">
     <meta charset="UTF-8">
     <title th:text="${post.getTitle()}">Title</title>
 </head>
-<body>
+<body class="content">
 
-<div class="content header">
+<header class="content__header">
+    <h3><a href="/categories">Categories</a></h3>
+    <h3><a href="/posts">Posts</a></h3>
+    <h3><a href="/authors">Authors</a></h3>
+    <h3><a href="/tags">Tags</a></h3>
+</header>
 
-    <header class="content header info">
-        <h3><a href="/categories">Categories</a></h3>
-        <h3><a href="/posts">Posts</a></h3>
-        <h3><a href="/authors">Authors</a></h3>
-        <h3><a href="/tags">Tags</a></h3>
-    </header>
+<div class="content__container">
+
+    <h1 class="content__container__title" th:text="${post.getTitle()}">Post Title</h1>
+
+    <h2><a th:text="${post.getCategory().getName()}" th:href="@{'/categories/' + ${post.getCategory().getName()}}"></a>
+    </h2>
+
+    <p th:text="${post.getBody()}">Post Body</p>
+
+    <p>
+        Posted <a th:text="${post.getDate()}" th:remove="tag">Date</a> by <a
+            th:href="@{'/authors/' + ${post.getAuthor().getId()}}" th:text="${post.getAuthor().getName()}">Author</a>
+    </p>
+
+    <div class="content__container__tag">
+        <p th:each="tag : ${post.getTags()}"><a th:text="${tag.getName()}"
+                                                th:href="@{'/tags/' + ${tag.getId()}}">Tag</a></p>
+    </div>
 
 </div>
 
-<h1 th:text="${post.getTitle()}">Post Title</h1>
-
-<h2><a th:text="${post.getCategory().getName()}" th:href="@{'/categories/' + ${post.getCategory().getName()}}"></a></h2>
-
-<p th:text="${post.getBody()}">Post Body</p>
-
-<p>
-    Posted <a th:text="${post.getDate()}" th:remove="tag">Date</a> by <a
-        th:href="@{'/authors/' + ${post.getAuthor().getId()}}" th:text="${post.getAuthor().getName()}">Author</a>
-</p>
-
-<div th:each="tag : ${post.getTags()}">
-    <p><a th:text="${tag.getName()}" th:href="@{'/tags/' + ${tag.getId()}}">Tag</a></p>
-</div>
-
-<footer class="content footer">Footer <a href="/">Back Home</a></footer>
+<footer class="content__footer"><a href="/">Back Home</a></footer>
 
 
 </body>
