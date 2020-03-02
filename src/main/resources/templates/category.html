@@ -1,48 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Spartan&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/main-style.css">
     <meta charset="UTF-8">
     <title th:text="${category.getName()}">Title</title>
 </head>
-<body>
+<body class="content">
 
-<div class="content header">
 
-    <header class="content header info">
-        <h3><a href="/categories">Categories</a></h3>
-        <h3><a href="/posts">Posts</a></h3>
-        <h3><a href="/authors">Authors</a></h3>
-        <h3><a href="/tags">Tags</a></h3>
-    </header>
+<header class="content__header">
+    <h3><a href="/categories">Categories</a></h3>
+    <h3><a href="/posts">Posts</a></h3>
+    <h3><a href="/authors">Authors</a></h3>
+    <h3><a href="/tags">Tags</a></h3>
+</header>
+
+<div class="content__container">
+
+
+    <h1 th:if="${category.getPosts().isEmpty()}" th:text="'No posts are categorized by ' + ${category.getName()}">
+        Name
+    </h1>
+
+    <h1 th:if="${!category.getPosts().isEmpty()}" th:text="'Posts categorized by ' + ${category.getName()}">
+        Name
+    </h1>
+
+    <h3 th:each="post : ${category.getPosts()}">
+        <a th:href="@{'/posts/' + ${post.getId()}}" th:text="${post.getTitle()}">Post Title</a>
+    </h3>
 
 </div>
 
-<h1 th:text="${category.getName()}">Category Name</h1>
-
-<table style="border: thin solid gray">
-    <tr>
-        <th>Title</th>
-        <th>Body</th>
-        <th>Author</th>
-        <th>Date</th>
-    </tr>
-    <tbody>
-    <tr th:if="${category.getPosts().isEmpty()}">
-        <td colspan="2">No Posts</td>
-    </tr>
-    <tr th:each="post : ${category.getPosts()}">
-        <td style="border: thin solid black"><span>
-            <a th:text="${post.getTitle()}" th:href="@{'/posts/' + ${post.getId()}}">Post Title</a>
-        </span></td>
-        <td style="border: thin solid black"><span th:text="${post.getBody()}">Post Body</span></td>
-        <td style="border: thin solid black"><span th:text="${post.getAuthor().getName()}">Post Author</span></td>
-        <td style="border: thin solid black"><span th:text="${post.getDate()}">Post Date</span></td>
-    </tr>
-    </tbody>
-</table>
-
-<footer class="content footer">Footer <a href="/">Back Home</a></footer>
+<footer class="content__footer"><a href="/">Back Home</a></footer>
 
 </body>
 </html>

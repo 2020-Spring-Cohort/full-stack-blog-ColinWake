@@ -1,37 +1,103 @@
 html, body {
     height: 100%;
     margin: 0;
+    font-size: 1.2rem;
 }
 
 .content {
     display: flex;
     flex-direction: column;
     height: 100%;
+    font-family: 'Spartan', serif;
 }
 
-.content .header .info {
+.content__container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 85px 15px 15px;
+    align-items: flex-start;
+}
+
+.content__container > .content__container__form {
+    align-self: stretch;
+}
+
+.content__footer {
     display: flex;
     flex-direction: row;
+    padding: 15px;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .6);
+    border-top: 1px solid rgba(160, 159, 155, 0.2);
+}
+
+.content__footer a {
+    text-decoration: none;
+    color: white;
+}
+
+.content__header {
+    display: flex;
+    top: 0;
+    flex: 0 1 40px;
+    background-color: rgba(0, 0, 0, .6);
+    border-bottom: 1px solid rgba(160, 159, 155, 0.2);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    position: fixed;
     justify-content: space-evenly;
 }
 
-.content .container {
-    background-color: #282a36;
+.content__container__title {
+    align-self: center;
+}
+
+.content__header a {
+    text-decoration: none;
     color: white;
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 auto;
-    overflow-y: scroll;
 }
 
-.content .header {
-    background-color: #474955;
-    display: flex;
-    flex: 0 1 40px;
+.content__container a {
+    text-decoration: none;
+    color: black;
 }
 
-.content .footer {
-    background-color: #474955;
-    display: flex;
-    flex: 0 1 40px;
+.content__container a:after {
+    content: "";
+    display: block;
+    border-bottom: solid 2px black;
+    padding-top: 2px;
+    width: 0;
+    transition: 0.5s;
+}
+
+.content__container a:hover:after {
+    width: 100%;
+}
+
+.content__header a:after {
+    content: "";
+    display: block;
+    border-bottom: solid 2px white;
+    padding-top: 2px;
+    width: 0;
+    transition: 0.5s;
+}
+
+.content__header a:hover:after {
+    width: 100%;
+}
+
+.content__footer a:after {
+    content: "";
+    display: block;
+    border-bottom: solid 2px white;
+    padding-top: 2px;
+    width: 0;
+    transition: 0.5s;
+}
+
+.content__footer a:hover:after {
+    width: 100%;
 }

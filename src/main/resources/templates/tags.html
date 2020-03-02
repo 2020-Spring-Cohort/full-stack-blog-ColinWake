@@ -1,45 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="css/main-style.css">
+    <link href="https://fonts.googleapis.com/css?family=Spartan&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main-style.css">
     <meta charset="UTF-8">
     <title>Tags</title>
 </head>
-<body>
+<body class="content">
 
-<div class="content">
+<header class="content__header">
+    <h3><a href="/categories">Categories</a></h3>
+    <h3><a href="/posts">Posts</a></h3>
+    <h3><a href="/authors">Authors</a></h3>
+    <h3><a href="/tags">Tags</a></h3>
+</header>
 
-    <div class="content header">
+<div class="content__container">
 
-        <header class="content header info">
-            <h3><a href="/categories">Categories</a></h3>
-            <h3><a href="/posts">Posts</a></h3>
-            <h3><a href="/authors">Authors</a></h3>
-            <h3><a href="/tags">Tags</a></h3>
-        </header>
+    <h1 th:each="tag : ${tags}">
+        <a th:href="@{'/tags/' + ${tag.getId()}}" th:text="${tag.getName()}">Tag</a>
+    </h1>
 
-    </div>
-
-    <div class="content container">
-
-        <h1 class="content title">Post Tags</h1>
-
-        <ul class="content section" th:each="tag : ${tags}">
-            <li>
-                <h2 th:text="${tag.getName()}">Tag Name</h2>
-                <ul th:each="post : ${tag.getPosts()}">
-                    <li><h3>
-                        <a th:text="${post.getTitle()}" th:href="@{'/posts/' + ${post.getId()}}">Post Link</a>
-                    </h3></li>
-                </ul>
-            </li>
-        </ul>
-
-    </div>
-
-    <footer class="content footer">Footer <a href="/">Back Home</a></footer>
+    <form method="post" action="/tags/add-tag" class="content__container__form">
+        <fieldset>
+            <label for="name">
+                Name<br>
+                <input type="text" id="name" name="name">
+                <button type="submit">Create</button>
+            </label>
+        </fieldset>
+    </form>
 
 </div>
+
+<footer class="content__footer"><a href="/">Back Home</a></footer>
+
 
 </body>
 </html>

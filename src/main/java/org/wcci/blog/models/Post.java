@@ -15,6 +15,7 @@ public class Post {
     @GeneratedValue
     private Long id;
     private String title;
+    @Lob
     private String body;
     @ManyToOne
     private Author author;
@@ -32,7 +33,7 @@ public class Post {
         this.body = body;
         this.author = author;
         // Ex. February 20 2020 10:14 PM
-        this.date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMMM dd yyyy h:mm a"));
+        this.date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMMM d, yyyy 'at' h:mm a"));
         this.category = category;
         this.tags = new ArrayList<>(Arrays.asList(tags));
     }
